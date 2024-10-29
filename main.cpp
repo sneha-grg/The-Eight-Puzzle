@@ -11,11 +11,11 @@ int main()
     
     while (true) {
         if (cin >> option && (option == 1 || option == 2)) {
-            break; // Valid input received
+            break;
         } else {
             cout << "Invalid input. Please try again: ";
-            cin.clear(); // Clear error flags
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
     
@@ -47,6 +47,27 @@ int main()
     cout << "2. A* with the Misplaced Tile heuristic.\n";
     cout << "3. A* with the Euclidean distance heuristic.\n";
 
+    int choice;
+    while (true) {
+        if (cin >> choice && (choice >= 1 && choice <= 3)) {
+            break;
+        } else {
+            cout << "Invalid input. Please enter 1, 2, or 3: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+
+    cout << "Algorithm choice: ";
+    if (choice == 1) {
+        cout << "Uniform Cost Search" << endl; // ADD UNIFORM COST OBJECT HERE
+    } else if (choice == 2) {
+        cout << "A* with the Misplaced Tile heuristic." << endl; // ADD MISPLACED TILE OBJECT HERE
+    } else if (choice == 3) {
+        cout << "A* with the Euclidean distance heuristic." << endl; // ADD EUCLIDEAN DISTANCE HERE
+    }
+
+    cout << "That's all folks!" << endl;
     
     return 0;
 }
