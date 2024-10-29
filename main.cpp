@@ -29,7 +29,7 @@ int main()
             {4, 0, 6},
             {7, 5, 8}
         };
-        Tree tree(puzzle);
+
         cout << "Using default puzzle:\n";
     }
     else if (option == 2) {
@@ -49,6 +49,21 @@ int main()
     cout << "1. Uniform Cost Search\n";
     cout << "2. A* with the Misplaced Tile heuristic.\n";
     cout << "3. A* with the Euclidean distance heuristic.\n";
+
+
+    vector<vector<int>> start = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 0, 8}
+    };
+
+    vector<vector<int>> goal = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 0}
+    };
+
+
 
     
     return 0;
