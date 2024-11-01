@@ -26,11 +26,11 @@ class State {
 
         // possible nodes generated from current node
         vector<State> getChildren() const {
-            vector<State> successors;
+            vector<State> children;
             int row, col;
             
             if (!getBlankTile(row, col))
-                return successors; // No blank tile found
+                return children; // No blank tile found
 
             int row_actions[] = {-1, 1, 0, 0}; // up, down
             int col_actions[] = {0, 0, -1, 1}; // left, right
@@ -41,10 +41,10 @@ class State {
                 if (row_b >= 0 && row_b < 3 && col_b >= 0 && col_b < 3) {
                     vector<vector<int>> temp_puzzle = holds_puzzle;
                     swap(temp_puzzle[row][col], temp_puzzle[row_b][col_b]);
-                    successors.push_back(State(temp_puzzle));
+                    children.push_back(State(temp_puzzle));
                 }
             }
-            return successors;
+            return children;
         }
 
         // Equality operator allows comparison between states
