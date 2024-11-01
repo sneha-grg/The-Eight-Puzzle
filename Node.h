@@ -16,10 +16,3 @@ public:
         return g + h;
     }
 };
-
-// Comparator for priority queue to order nodes by f(n) = g(n) + h(n)
-struct CompareNodes {
-    bool operator()(const shared_ptr<Node>& lhs, const shared_ptr<Node>& rhs) const {
-        return lhs->getF() > rhs->getF();
-    }
-};

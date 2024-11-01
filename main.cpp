@@ -4,7 +4,10 @@
 #include <vector>
 #include <memory>
 #include "State.h"
+#include "ProblemSearch.h"
 #include "UniformCostSearch.h"
+#include "MisplacedTile.h"
+#include "EuclideanDistance.h"
 
 using namespace std;
 
@@ -24,15 +27,15 @@ int main()
         }
     }
     
-    vector<int> root_puzzle(9);
-    // vector<vector<int>> root_puzzle(3, vector<int>(3)); // creates a 2D vector for a 3x3 matrix
+    // vector<int> root_puzzle(9);
+    vector<vector<int>> root_puzzle(3, vector<int>(3)); // creates a 2D vector for a 3x3 matrix
     // {{0,0,0}, {0,0,0}, {0,0,0}}
 
     if(option == 1) {
         root_puzzle = {
-            1, 2, 3,
-            4, 8, 0, 
-            7, 6, 5
+            {1, 2, 3},
+            {4, 8, 0},
+            {7, 6, 5}
         };
         cout << "Using default root_puzzle:\n";
     }
@@ -70,9 +73,7 @@ int main()
                 }
 
                 if (row.size() == 3) { // checks if user input exactly 3 numbers
-                    root_puzzle[i*3 + 0] = row[0];
-                    root_puzzle[i*3 + 1] = row[1];
-                    root_puzzle[i*3 + 2] = row[2]; // row vector is put in ith row of root_puzzle 
+                   root_puzzle[i] = row; // row vector is put in ith row of root_puzzle 
                     break;
                 } else {
                     cout << "Invalid input. Please enter exactly three numbers separated by spaces: ";
@@ -82,16 +83,15 @@ int main()
     }
     
     // Display the maxtrix
-    for (size_t i = 0; i < root_puzzle.size(); ++i) {
-        if (i % 3 == 0)
-            cout << endl;
-        int num = root_puzzle[i];
-        if(num == 0)
-            cout << "b ";
-        else
-            cout << num << " ";
+    for (const auto& row : root_puzzle) {
+        for (int num : row) {
+            if(num == 0)
+                cout << "b ";
+            else
+                cout << num << " ";
+        }
+        cout << endl;
     }
-    cout << endl;
 
     // Prompt for algorithm choice
     cout << "Enter your choice of algorithm\n";
@@ -115,14 +115,14 @@ int main()
 
     if (choice == 1) {
         cout << "Uniform Cost Search" << endl; // ADD UNIFORM COST OBJECT HERE
-        UniformCostSearch(initialState);
+        ProblemSearch(initialState, UniformCostSearch);
     } else if (choice == 2) {
         cout << "A* with the Misplaced Tile heuristic." << endl; // ADD MISPLACED TILE OBJECT HERE
+        ProblemSearch(initialState, MisplacedTileHeuristic);
     } else if (choice == 3) {
         cout << "A* with the Euclidean distance heuristic." << endl; // ADD EUCLIDEAN DISTANCE HERE
+        ProblemSearch(initialState, EuclideanDistanceHeuristic);
     }
-
-    // delete start_node;
     
     return 0;
 }
