@@ -43,8 +43,6 @@ void ProblemSearch(State initialState, int (*heuristicFunc)(const State&)) {
 
         // checks if current node is the goal state
         if (current_node->state.isGoalState()) {
-            cout << "Goal!!!" << endl;
-            
             // traces back from goal node to root node using pointer
             vector<shared_ptr<Node>> path;
             auto n = current_node;
@@ -60,11 +58,17 @@ void ProblemSearch(State initialState, int (*heuristicFunc)(const State&)) {
 
             // prints the states and solution
             for (auto p : path) {
-                cout << "The best state to expand with g(n) = " << p->g
+                if (p->g == 0) {
+                    p->state.print();
+                }
+                else if(p->g != 0) {
+                    cout << "The best state to expand with g(n) = " << p->g
                      << " and h(n) = " << p->h << " is..." << endl;
-                p->state.print();
-                cout << "Expanding this node..." << endl << endl;
+                    p->state.print();
+                    cout << "Expanding this node..." << endl << endl;
+                }
             }
+            cout << "Goal!!!" << endl << endl;
             cout << "To solve this problem the search algorithm expanded a total of "
                  << nodes_expanded << " nodes." << endl;
             cout << "The maximum number of nodes in the queue at any one time: "

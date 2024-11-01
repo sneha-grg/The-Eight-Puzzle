@@ -121,7 +121,7 @@ int main()
         ProblemSearch(initialState, MisplacedTileHeuristic);
     } else if (choice == 3) {
         cout << "A* with the Euclidean distance heuristic." << endl; // ADD EUCLIDEAN DISTANCE HERE
-        ProblemSearch(initialState, EuclideanDistanceHeuristic);
+        ProblemSearch(initialState, calculate_euclidean_heuristic);
     }
     
     return 0;

@@ -3,7 +3,7 @@
 
 #include "State.h"
 
-int UniformCostSearch(const State& currentState) {
+int UniformCostSearch(const State& ) {
     return 0;
 }
 

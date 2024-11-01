@@ -14,8 +14,8 @@ int MisplacedTileHeuristic(const State& currentState) {
         {7, 8, 0}
     };
     const vector<vector<int>>& current_puzzle = currentState.getHoldsPuzzle();
-    for (size_t i = 0; i < current_puzzle.size(); ++i) {
-        for (size_t j = 0; j < current_puzzle[i].size(); ++j) {
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
             if (current_puzzle[i][j] != 0 && current_puzzle[i][j] != goal_state[i][j]) {
                 misplaced++;
             }
